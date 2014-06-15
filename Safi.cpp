@@ -1,4 +1,8 @@
-//Safi Bahi Always add small comments, so someone else can also understand ur code :P it took me some time hehehe
+/*
+Safi Bahi Always add small comments, so someone else can also understand ur code :P it took me some time hehehe
+also just use "" when u want to add a space in a file or on screen, just a bit easier to use one set of quotes
+instead of '' and ""
+*/
 
 #include<iostream>
 #include<fstream>
