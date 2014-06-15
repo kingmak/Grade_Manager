@@ -2,6 +2,14 @@
 Safi Bahi Always add small comments, so someone else can also understand ur code :P it took me some time hehehe
 also just use "" when u want to add a space in a file or on screen, just a bit easier to use one set of quotes
 instead of '' and ""
+
+also if u want to add a pause in ur code u can use:
+1) cin.ignore();cin.get()
+2) System("pause"); <-- this works sometimes
+
+One more thing, i added a few more things:
+1) made the cout statments print the messages nicely
+2) added a few more cout statements so the Normal user can understand what is happening	
 */
 
 #include<iostream>
@@ -21,30 +29,30 @@ int main() {
 
 	int y = 0;
 
-	cout << "Press 1 for Admininstrator, 2 for Teacher or 3 for Student: " << endl;
+	cout << "Choose from the following choices:\n\n1 for Admininstrator\n2 for Teacher\n3 for Student\n\nTypeHere: ";//just being a bit fancy :)
 	cin >> y;
 	
 	if (y == 1)
-	{
-	        admin();
-	}		
+		{
+			admin();
+		}		
 	else if (y == 2)
-	{
-	        teacher();
-	}	
+		{
+			teacher();
+		}	
 	else if (y == 3)
-	{
-		student();
-	}
+		{
+			student();
+		}
 	else
-		cout << "Sorry: Invalid Input";
+		cout << "Error: Invalid Input";
 }
 
 void admin() {
 	
 	string name, code, passcode, full;
 	
-	cout << "Enter your name: ";
+	cout << endl << "Enter your name: ";
 	cin >> name;
 	
 	cout << "Enter the code: ";
@@ -74,16 +82,17 @@ void admin() {
 
 	if (passcode == full)
 	{
-		cout << "Welcome!!" << endl;
+		cout << endl << "Welcome!!\n" << endl;
 
-		cout << "Make enteries of the students: \n";
+		cout << "Make enteries of the students: " << endl;
 		strec std;
 
 		ofstream B;
 		B.open("data.txt");
-
+		
 		for(int i = 0; i < 3; i++)
 		{
+			cout << endl << "Student " << (i + 1) << endl;
 			cout << "Enter first name: ";
 			cin >> std[i].fname;
 
@@ -98,15 +107,17 @@ void admin() {
 
 			B << std[i].fname << " " << std[i].lname << " " <<std[i].regno << " " <<std[i].password<<endl;
 		}
+		
+		cout << endl << "All student records were successfully saved";
 	}
 	else
-		cout << "Invalid entry!!!";
+		cout << "Error: Invalid Entry";
 }
 
 void teacher() {
 
 	string name, code, passcode, full;
-	cout << "Enter your name: ";
+	cout << endl << "Enter your name: ";
 	cin >> name;
 	
 	cout << "Enter the code: ";
@@ -121,13 +132,11 @@ void teacher() {
 
 	if (passcode == full)
 	{
-		cout << "Welcome!!" << endl;
+		cout << endl << "Welcome Teacher!!" << endl;
 	}
 }
 
 void student() {
 
-	cout << "Hello!! ";
+	cout << endl << "Hello Student!!";
 }
-
-
