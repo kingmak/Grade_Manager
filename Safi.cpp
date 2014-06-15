@@ -33,17 +33,17 @@ int main() {
 	cin >> y;
 	
 	if (y == 1)
-		{
-			admin();
-		}		
+	{
+		admin();
+	}		
 	else if (y == 2)
-		{
-			teacher();
-		}	
+	{
+		teacher();
+	}	
 	else if (y == 3)
-		{
-			student();
-		}
+	{
+		student();
+	}
 	else
 		cout << "Error: Invalid Input";
 }
