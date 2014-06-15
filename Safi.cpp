@@ -22,15 +22,15 @@ int main() {
 	
 	if (y == 1)
 	{
-			admin();
+	        admin();
 	}		
 	else if (y == 2)
 	{
-			teacher();
+	        teacher();
 	}	
 	else if (y == 3)
 	{
-			student();
+		student();
 	}
 	else
 		cout << "Sorry: Invalid Input";
