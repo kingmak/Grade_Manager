@@ -68,7 +68,7 @@ void admin() {
 
 	getline(A, full);
 
-	if (passcode == "a")
+	if (passcode == full)
 	{
 		cout << "Welcome!!" << endl;
 
