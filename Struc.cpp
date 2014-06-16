@@ -12,12 +12,12 @@ struct Name {
  
 int main() {
 	
-	struct Name Person;
+    struct Name Person;
 	
-	Person.FirstName = "Safiullah";
-	Person.LastName = "Imtiaz";
+    Person.FirstName = "Safiullah";
+    Person.LastName = "Imtiaz";
 	
-	PrintName(Person);	
+    PrintName(Person);	
 }
 void PrintName(struct Name Person) {
 	
