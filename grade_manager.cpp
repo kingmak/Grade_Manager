@@ -1,3 +1,5 @@
+//Author: King Mak
+
 #include <string>
 #include <fstream>
 #include <cstdlib>
