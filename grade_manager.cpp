@@ -1,4 +1,4 @@
-//Author: King Mak
+//Author: King Mak aka Ahmed
 
 #include <string>
 #include <fstream>
