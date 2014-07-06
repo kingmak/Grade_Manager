@@ -1,11 +1,10 @@
-//Author: King Mak aka Ahmed
-
 #include <string>
 #include <fstream>
 #include <cstdlib>
 #include <iostream>
 
-//rem funcs for student + teacher (2 more funcs) n Gpa Calc?
+//rem funcs for student + teacher (2 more funcs) + Attendance Manangement?
+//dev Master Admin
 
 using namespace std;
 
@@ -17,12 +16,12 @@ void TeacherAccess();
 void TeacherManager();
 void StudentManager();
 
-//Modifications
+//Data Modifying Funcs
+void AddStudent();
+void AddTeachers();
 void GradeManager();
 void ViewTeachers();
-void AddTeachers();
-void AddStudent();
-void ViewStudent(bool ask, string Reg);
+void ViewStudent(bool ask, string Reg); //i know i'll fix the parameters later, too lazy
 
 int main(){
 	system("title Grade Manger 0.1 by KingMak");
@@ -31,7 +30,7 @@ int main(){
 	int Access;
 	
 	cout << "\tGrade Manager 0.1\n\n";
-	cout << "Please Choose From The Given Choices\n\n";
+	cout << "Please Choose Your Access Level\n\n";
 	cout << "1 - Administrator\n2 - Teacher\n3 - Student\n\nType Here: ";// option zero will be reserved for Master Admin, option will not be displayed for security
 	
 	cin >> Access;
@@ -320,7 +319,7 @@ void ViewTeachers(){
 void GradeManager(){
 	system("cls");
 	
-	int Count, StdntNum;
+	int Count, StdntNum, Gpa;
 	bool Match;
 	string FilePath, Line, RegNum;
 	string Fname, q1, q2, q3, q4, oht1, oht2, oht3, final, grade;
@@ -367,6 +366,49 @@ void GradeManager(){
     		cout << "- Final: "; cin >> final;
     		cout << "- Grade: "; cin >> grade;
     		
+    		//Gpa Calculation Below
+    		//GPA standard used from University of Minnesota; Gpa precision 3 decimal vals
+    		//Link: https://onestop.umn.edu/grades_and_transcripts/gpa_calculator/calculating_gpa.html
+    		//DESIGN -> Condense GPA calc in a func? add while in func if grade not entered correct? ask new grade in func
+    		//for now gpa vals hard coded, later find a fomula?
+    		
+    		if (grade == "A"){
+    			Gpa = 4.0;
+    		}
+    		else if (grade == "A-"){
+    			Gpa = 3.667;
+    		}
+    		else if (grade == "B+"){
+    			Gpa = 3.333;
+    		}
+    		else if (grade == "B"){
+    			Gpa = 3.0;
+    		}
+    		else if (grade == "B-"){
+    			Gpa = 2.667;
+    		}
+    		else if (grade == "C+"){
+    			Gpa = 2.333;
+    		}
+    		else if (grade == "C"){
+    			Gpa = 2.0;
+    		}
+    		else if (grade == "C-"){
+    			Gpa = 1.667;
+    		}
+    		else if (grade == "D+"){
+    			Gpa = 1.333;
+    		}
+    		else if (grade == "D"){
+    			Gpa = 1.0;
+    		}
+    		else if (grade == "F"){
+    			Gpa = 0.0;
+    		}
+    		else{
+    			cout << "Wrong Grade Letter Given (in func we could re ask for the grade)";
+    		}
+    		
     		FilePath = "Central/Data/" + RegNum + ".txt";
     		
 			ofstream RecordFile;
@@ -382,7 +424,8 @@ void GradeManager(){
 					   << "Oht2: " << oht2 << "\n"
 					   << "Oht3: " << oht3 << "\n"
 					   << "Final: " << final << "\n"
-					   << "Grade: " << grade << "\n";
+					   << "Grade: " << grade << "\n"
+					   << "Gpa: " << Gpa << "\n";
 			RecordFile.close();
 			
 			cout << "\n> Grades For Student '" << Fname << "' Have been saved\n";
