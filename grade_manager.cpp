@@ -319,10 +319,10 @@ void ViewTeachers(){
 void GradeManager(){
 	system("cls");
 	
-	int Count, StdntNum, Gpa;
+	int Count, StdntNum;
 	bool Match;
 	string FilePath, Line, RegNum;
-	string Fname, q1, q2, q3, q4, oht1, oht2, oht3, final, grade;
+	string Fname, q1, q2, q3, q4, oht1, oht2, oht3, final, grade, Gpa;
 	
 	cout << "Number of Student's whose Grades are being added: ";
 	cin >> Count;
@@ -373,37 +373,37 @@ void GradeManager(){
     		//for now gpa vals hard coded, later find a fomula?
     		
     		if (grade == "A"){
-    			Gpa = 4.0;
+    			Gpa = "4.0";
     		}
     		else if (grade == "A-"){
-    			Gpa = 3.667;
+    			Gpa = "3.667";
     		}
     		else if (grade == "B+"){
-    			Gpa = 3.333;
+    			Gpa = "3.333";
     		}
     		else if (grade == "B"){
-    			Gpa = 3.0;
+    			Gpa = "3.0";
     		}
     		else if (grade == "B-"){
-    			Gpa = 2.667;
+    			Gpa = "2.667";
     		}
     		else if (grade == "C+"){
-    			Gpa = 2.333;
+    			Gpa = "2.333";
     		}
     		else if (grade == "C"){
-    			Gpa = 2.0;
+    			Gpa = "2.0";
     		}
     		else if (grade == "C-"){
-    			Gpa = 1.667;
+    			Gpa = "1.667";
     		}
     		else if (grade == "D+"){
-    			Gpa = 1.333;
+    			Gpa = "1.333";
     		}
     		else if (grade == "D"){
-    			Gpa = 1.0;
+    			Gpa = "1.0";
     		}
     		else if (grade == "F"){
-    			Gpa = 0.0;
+    			Gpa = "0.0";
     		}
     		else{
     			cout << "Wrong Grade Letter Given (in func we could re ask for the grade)";
