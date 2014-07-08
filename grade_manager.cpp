@@ -4,11 +4,11 @@
 #include <cstdlib>
 #include <iostream>
 
+using namespace std;
+
 //Big Fix: Add student pass?
 //add funcs for student + teacher + Attendance Manangement?
 //dev Master Admin
-
-using namespace std;
 
 //Management and Auth Funcs
 string DateTime();
