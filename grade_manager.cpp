@@ -1,14 +1,17 @@
+#include <ctime>
 #include <string>
 #include <fstream>
 #include <cstdlib>
 #include <iostream>
 
-//rem funcs for student + teacher (2 more funcs) + Attendance Manangement?
+//Big Fix: Add student pass?
+//add funcs for student + teacher + Attendance Manangement?
 //dev Master Admin
 
 using namespace std;
 
 //Management and Auth Funcs
+string DateTime();
 void MasterAdmin();
 void AdminAccess();
 void AdminManager();
@@ -21,6 +24,7 @@ void AddStudent();
 void AddTeachers();
 void GradeManager();
 void ViewTeachers();
+string GpaCalc(string grade);
 void ViewStudent(bool ask, string Reg); //i know i'll fix the parameters later, too lazy
 
 int main(){
@@ -366,49 +370,6 @@ void GradeManager(){
     		cout << "- Final: "; cin >> final;
     		cout << "- Grade: "; cin >> grade;
     		
-    		//Gpa Calculation Below
-    		//GPA standard used from University of Minnesota; Gpa precision 3 decimal vals
-    		//Link: https://onestop.umn.edu/grades_and_transcripts/gpa_calculator/calculating_gpa.html
-    		//DESIGN -> Condense GPA calc in a func? add while in func if grade not entered correct? ask new grade in func
-    		//for now gpa vals hard coded, later find a fomula?
-    		
-    		if (grade == "A"){
-    			Gpa = "4.0";
-    		}
-    		else if (grade == "A-"){
-    			Gpa = "3.667";
-    		}
-    		else if (grade == "B+"){
-    			Gpa = "3.333";
-    		}
-    		else if (grade == "B"){
-    			Gpa = "3.0";
-    		}
-    		else if (grade == "B-"){
-    			Gpa = "2.667";
-    		}
-    		else if (grade == "C+"){
-    			Gpa = "2.333";
-    		}
-    		else if (grade == "C"){
-    			Gpa = "2.0";
-    		}
-    		else if (grade == "C-"){
-    			Gpa = "1.667";
-    		}
-    		else if (grade == "D+"){
-    			Gpa = "1.333";
-    		}
-    		else if (grade == "D"){
-    			Gpa = "1.0";
-    		}
-    		else if (grade == "F"){
-    			Gpa = "0.0";
-    		}
-    		else{
-    			cout << "Wrong Grade Letter Given (in func we could re ask for the grade)";
-    		}
-    		
     		FilePath = "Central/Data/" + RegNum + ".txt";
     		
 			ofstream RecordFile;
@@ -425,7 +386,7 @@ void GradeManager(){
 					   << "Oht3: " << oht3 << "\n"
 					   << "Final: " << final << "\n"
 					   << "Grade: " << grade << "\n"
-					   << "Gpa: " << Gpa << "\n";
+					   << "Gpa: " << GpaCalc(grade) << "\n";
 			RecordFile.close();
 			
 			cout << "\n> Grades For Student '" << Fname << "' Have been saved\n";
@@ -523,4 +484,68 @@ void ViewStudent(bool ask, string Reg){
 	cout << "\nPress Enter to Exit";	
     cin.get(); cin.ignore();
     system("cls");
+}
+
+string GpaCalc(string grade){
+	
+	//GPA standard used from University of Minnesota; Gpa precision 3 decimal vals, 1 in case of whole numbers
+	//Link: https://onestop.umn.edu/grades_and_transcripts/gpa_calculator/calculating_gpa.html
+	
+	GradeRecheck: //goto label, ikr? but its was the easiest way to do this, executed in the else case
+	if (grade == "A"){
+		return "4.0";
+	}
+	else if (grade == "A-"){
+		return "3.667";
+	}
+	else if (grade == "B+"){
+		return "3.333";
+	}
+	else if (grade == "B"){
+		return "3.0";
+	}
+	else if (grade == "B-"){
+		return "2.667";
+	}
+	else if (grade == "C+"){
+		return "2.333";
+	}
+	else if (grade == "C"){
+		return "2.0";
+	}
+	else if (grade == "C-"){
+		return "1.667";
+	}
+	else if (grade == "D+"){
+		return "1.333";
+	}
+	else if (grade == "D"){
+		return "1.0";
+	}
+	else if (grade == "F"){
+		return "0.0";
+	}
+	else{
+		string NewGrade;
+		cout << "\n\nWrong Grade Letter Given. Should be One of The Following:\n";
+		cout << "'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D-', 'F'\n\n";
+		cout << "Type Grade Here: ";
+		cin >> NewGrade;
+		grade = NewGrade;
+		goto GradeRecheck; //read comment at label call, line 498
+	}
+}
+
+string DateTime(){
+	time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, 80, "%d/%m/%Y @ %I:%M:%S %p", timeinfo); //American Date Standard
+    string str(buffer);
+
+    return str;
 }
